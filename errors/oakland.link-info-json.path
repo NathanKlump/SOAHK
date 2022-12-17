@@ -1,0 +1,19 @@
+java.nio.file.NoSuchFileException: @oakland.link-info-json.path@
+
+error caused by a missing or incorrect path in EA_PROPS_HOME for the variable @oakland.link-info-json.path@
+
+The gradesAndTranscriptsLinkInfo.json file is used in three places. Application.properties in EA_PROPS_HOME is used to contain the direct path to the file
+gradesAndTranscriptsLinkInfo.json. application.properties in the resources folder in the app is used to reference the variable in EA_PROPS_HOME and the
+@Value is used to get the variable from the application.properties in the resources folder.
+
+EA_PROPS_HOME
+should be:
+oakland.link-info-json.path=/home/ea-dev-vm/GitProjects/ApplicationProperties/EA_PROPS_HOME/grades-and-transcripts/gradesAndTranscriptsLinkInfo.json
+
+application.properties
+should be:
+oakland.link-info-json.path=@oakland.link-info-json.path@
+
+@Value
+should be:
+@Value("${oakland.link-info-json.path}")
